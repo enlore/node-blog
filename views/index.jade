@@ -3,4 +3,5 @@ block body
   .container
     .row
       .col-sm-12
-        .posts!= body
+        -each post in body
+          .post!= post
