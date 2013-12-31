@@ -36,6 +36,7 @@ var less_opts = {
 // dev config
 if ('development' == app.get('env')) {
   app.use(express.errorHandler())
+  app.locals.pretty = true
 }
 
 // pro config
