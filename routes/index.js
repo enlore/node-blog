@@ -7,15 +7,15 @@ var path = require('path')
     , md = require('node-markdown').Markdown
 
 exports.index = function(req, res){
-    var body = ''
+    var res_queue = []
 
     fs.readdir(path.join(__dirname, 'posts'), function (err, files) {
         if (err)
             throw err
 
         if (files.length == 0) {
-            body = 'no posts'
-            res.render('index', { title: 'POSTing to S3', body: body });
+            res_queue.push('no posts')
+            res.render('index', { title: 'POSTing to S3', body: res_queue });
         } else {
             var re = new RegExp('\.swp$')
 
@@ -26,13 +26,19 @@ exports.index = function(req, res){
                         if (err)
                             throw err
 
-                        body += md(data) 
+                        res_queue.unshift(md(data))
 
-                        if (i == files.length)
-                            res.render('index', { title: 'POSTing to S3', body: body });
+                        if (res_queue.length == files.length)
+                            res.render('index', { title: 'POSTing to S3', body: res_queue });
                     })      
                 }
             } 
         }
     })
+}
+
+exports.test = function (req, res) {
+    res.location('http://google.com')
+    res.writeHead(303)
+    res.end()
 }
