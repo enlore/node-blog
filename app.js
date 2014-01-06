@@ -62,9 +62,11 @@ var Post = require('./models/post')
 // Routes
 app.get('/', routes.index)
 app.get('/posts', routes.posts)
-app.get('/post/:id', routes.post)
+
 app.get('/post/new', routes.new_post)
 app.post('/post/new', routes.new_post)
+
+app.get('/post/:id', routes.post)
 
 http.createServer(app).listen(app.get('port'), function() {
   console.log('Express server listening on port ' + app.get('port'))
