@@ -22,7 +22,7 @@ exports.new_post = function (req, res) {
         post.tags = req.body.tags.split(' ')
         post.save(function (err) {
             if (err) throw err 
-            res.send({'message': 'saved!'})
+            res.redirect('posts')
         })
     }
 }
