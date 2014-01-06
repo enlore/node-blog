@@ -4,6 +4,28 @@
 var path = require('path')
     , fs = require('fs')
     , md = require('node-markdown').Markdown
+    , Post = require('../models/post')
+
+
+
+exports.post = function (req, res) {
+ res.send({oh: 'hai'}) 
+}
+
+exports.new_post = function (req, res) {
+    if (req.method == 'GET') {
+        res.render('new_post')
+    } else {
+        post = new Post()
+        post.title = req.body.title
+        post.body = req.body.body
+        post.tags = req.body.tags.split(' ')
+        post.save(function (err) {
+            if (err) throw err 
+            res.send({'message': 'saved!'})
+        })
+    }
+}
 
 exports.posts = function (req, res) {
     //res.render('posts', {posts: [{title: 'Test Donkey', body: 'This is the test donkey', tags: ['test', 'donkey'] }]})
