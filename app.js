@@ -53,8 +53,12 @@ if ('production' == app.get('env')) {
 app.use(require('less-middleware')(less_opts))
 app.use(express.static(path.join(__dirname, 'static')))
 
+// Models
+var Post = require('./models/post')
 
+// Routes
 app.get('/', routes.index)
+app.get('/posts', routes.posts)
 
 http.createServer(app).listen(app.get('port'), function() {
   console.log('Express server listening on port ' + app.get('port'))

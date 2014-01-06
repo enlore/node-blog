@@ -1,4 +1,3 @@
-
 /*
  * GET home page.
  */
@@ -6,6 +5,13 @@ var path = require('path')
     , fs = require('fs')
     , md = require('node-markdown').Markdown
 
+exports.posts = function (req, res) {
+    //res.render('posts', {posts: [{title: 'Test Donkey', body: 'This is the test donkey', tags: ['test', 'donkey'] }]})
+    Post.find(function (err, docs) {
+        if (err) throw err
+        res.render('posts', { posts: docs })
+    })
+}
 
 exports.index = function(req, res){
     console.log(req.app.get('post dir'))
@@ -13,8 +19,7 @@ exports.index = function(req, res){
 
     fs.readdir(req.app.get('post dir'), function (err, files) {
         if (err)
-            throw err
-
+            throw err 
         if (files.length == 0) {
             res_queue.push('no posts')
             res.render('index', { title: 'POSTing to S3', body: res_queue });
