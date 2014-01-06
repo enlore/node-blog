@@ -5,6 +5,8 @@ var express     = require('express')
 
 var app = express()
 
+app.set('post dir', path.join(__dirname, 'posts'))
+
 app.set('port', process.env.PORT || 3000)
 app.set('env', process.env.NODE_ENV || 'development')
 app.set('secret', process.env.SECRET || 'WHAT IS A MAN')
@@ -50,6 +52,7 @@ if ('production' == app.get('env')) {
 
 app.use(require('less-middleware')(less_opts))
 app.use(express.static(path.join(__dirname, 'static')))
+
 
 app.get('/', routes.index)
 
