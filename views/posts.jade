@@ -1,0 +1,14 @@
+extends layout/base
+block body
+  .container
+    .row
+      .col-sm-12
+        -each post in posts
+          .row
+            .col-sm-8
+              h2= post.title
+              p= post.body
+              if post.tags
+                ul
+                  -each tag in post.tags
+                    li= tag
