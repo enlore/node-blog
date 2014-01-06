@@ -6,10 +6,12 @@ var path = require('path')
     , fs = require('fs')
     , md = require('node-markdown').Markdown
 
+
 exports.index = function(req, res){
+    console.log(req.app.get('post dir'))
     var res_queue = []
 
-    fs.readdir(path.join(__dirname, 'posts'), function (err, files) {
+    fs.readdir(req.app.get('post dir'), function (err, files) {
         if (err)
             throw err
 
@@ -22,14 +24,17 @@ exports.index = function(req, res){
             for (var i = 0; i < files.length; i++) {
                 // only if it ain't a swap 
                 if (!re.test(files[i])) {
-                    fs.readFile( path.join(__dirname, 'posts', files[i]), {encoding: 'utf-8'}, function (err, data) {
-                        if (err)
-                            throw err
+                    fs.readFile(
+                        path.join(req.app.get('post dir'), files[i]),
+                        {encoding: 'utf-8'},
+                        function (err, data) {
+                            if (err)
+                                throw err
 
-                        res_queue.unshift(md(data))
+                            res_queue.unshift(md(data))
 
-                        if (res_queue.length == files.length)
-                            res.render('index', { title: 'POSTing to S3', body: res_queue });
+                            if (res_queue.length == files.length - 1)
+                                res.render('index', { title: 'POSTing to S3', body: res_queue });
                     })      
                 }
             } 
