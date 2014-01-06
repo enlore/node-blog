@@ -2,6 +2,7 @@ var express     = require('express')
     , routes    = require('./routes')
     , http      = require('http')
     , path      = require('path')
+    , mongoose  = require('mongoose')
 
 var app = express()
 
@@ -39,6 +40,8 @@ var less_opts = {
 if ('development' == app.get('env')) {
   app.use(express.errorHandler())
   app.locals.pretty = true
+
+  mongoose.connect('mongodb://localhost/posts')
 }
 
 // pro config
