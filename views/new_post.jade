@@ -1,22 +1,22 @@
 extends layout/base
 block body
-  .container
-    form.form-horizontal(action="/post/new", method="post")
+  .new-post.container
+    form.new-post.form-horizontal(action="/post/new", method="post")
       .form-group
-        label.col-sm-4.control-label(for="title") Title
-        .col-sm-8
-          input(type="text", name="title")
+        label.col-sm-2.control-label(for="title") Title
+        .col-sm-10
+          input.form-control(type="text", name="title")
 
       .form-group
-        label.col-sm-4.control-label(for="body") Body
-        .col-sm-8
-          textarea(type="text", name="body")
+        label.col-sm-2.control-label(for="body") Body
+        .col-sm-10
+          textarea.form-control(type="text", name="body")
 
       .form-group
-        label.col-sm-4.control-label(for="tags") Tags
-        .col-sm-8
-          input(type="text", name="tags")
+        label.col-sm-2.control-label(for="tags") Tags
+        .col-sm-10
+          input.form-control(type="text", name="tags")
 
       .form-group
-        .col-sm-8.col-sm-offset-4
-          input.btn.btn-primary(type="submit", value="Save")
+        .col-sm-4.col-sm-offset-8
+          input.form-control.btn.btn-primary(type="submit", value="Save")
