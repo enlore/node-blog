@@ -6,8 +6,9 @@ block body
         -each post in posts
           .row
             .col-sm-8
-              h2= post.title
-              p= post.body
+              h1= post.title
+              p!= post.body
+              p= new Date(post.publishDate)
               if post.tags
                 ul
                   -each tag in post.tags

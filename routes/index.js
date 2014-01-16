@@ -18,8 +18,9 @@ exports.new_post = function (req, res) {
     } else {
         post = new Post()
         post.title = req.body.title
-        post.body = req.body.body
+        post.body = md(req.body.body)
         post.tags = req.body.tags.split(' ')
+        post.publishDate = new Date()
         post.save(function (err) {
             if (err) throw err 
             res.redirect('posts')
@@ -29,9 +30,12 @@ exports.new_post = function (req, res) {
 
 exports.posts = function (req, res) {
     //res.render('posts', {posts: [{title: 'Test Donkey', body: 'This is the test donkey', tags: ['test', 'donkey'] }]})
-    Post.find(function (err, docs) {
+    query = Post.find()
+    query.sort('-publishDate')
+    query.exec(function (err, docs) {
         if (err) throw err
-        res.render('posts', { posts: docs })
+        console.log(typeof(docs[0])) 
+        res.render('posts', { posts: docs }) 
     })
 }
 
