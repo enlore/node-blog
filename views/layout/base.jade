@@ -36,12 +36,18 @@ body
       <a href="">activate Google Chrome Frame</a> to significantly
       improve your browsing experience (and make the lives of developers
       like me a ton easier).
-.wrapper
-  nav.nav.navbar-default
-    ul.nav
-      li
-        a(href='/post/new') New
-  block body
+  .wrapper
+    nav.nav.navbar-default
+      .container
+        ul.nav.navbar-nav
+          li
+            a(href="/") Home
+          li
+            a(href="/posts") All Thuh Posts
+          li
+            a(href='/post/new') New
+
+    block body
 
   script(src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js")
   script.
