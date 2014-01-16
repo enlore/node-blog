@@ -5,6 +5,7 @@ var postSchema = new mongoose.Schema({
         title: String,
         body: String,
         publishDate: Date,
+        slug: String,
         tags: Array
 })
 

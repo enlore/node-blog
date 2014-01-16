@@ -5,6 +5,7 @@ var path = require('path')
     , fs = require('fs')
     , md = require('node-markdown').Markdown
     , Post = require('../models/post')
+    , slug = require('slug')
 
 
 
@@ -19,7 +20,9 @@ exports.new_post = function (req, res) {
         post = new Post()
         post.title = req.body.title
         post.body = md(req.body.body)
-        post.tags = req.body.tags.split(' ')
+        post.tags = req.body.tags.split(',')
+        // slug or title hyphenated
+        post.slug = req.body.slug || slug(req.body.title)
         post.publishDate = new Date()
         post.save(function (err) {
             if (err) throw err 
