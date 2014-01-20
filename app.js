@@ -65,8 +65,10 @@ app.get('/posts', routes.posts)
 
 app.get('/post/new', routes.new_post)
 app.post('/post/new', routes.new_post)
+app.get('/post/edit', routes.edit_post)
+app.post('/post/edit', routes.edit_post)
 
-app.get('/post/:id', routes.post)
+app.get('/posts/:id', routes.post)
 
 http.createServer(app).listen(app.get('port'), function() {
   console.log('Express server listening on port ' + app.get('port'))
