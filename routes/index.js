@@ -10,7 +10,17 @@ var path = require('path')
 
 
 exports.post = function (req, res) {
- res.send({oh: 'hai'}) 
+    Post.findById(req.params.id, function (err, doc) {
+            if (err)
+                res.send(400, 'nope')
+            res.render('post', {post: doc}) 
+    })
+}
+
+exports.edit_post = function (req, res) {
+    if (req.method == 'GET')  {
+        res.render('edit_post', {post: post}) 
+    } else {}
 }
 
 exports.new_post = function (req, res) {
