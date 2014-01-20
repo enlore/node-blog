@@ -68,6 +68,8 @@ app.post('/post/new', routes.new_post)
 app.get('/post/edit', routes.edit_post)
 app.post('/post/edit', routes.edit_post)
 
+app.get('/tags/:tag', routes.posts_by_tag)
+
 app.get('/posts/:id', routes.post)
 
 http.createServer(app).listen(app.get('port'), function() {

@@ -23,6 +23,18 @@ exports.edit_post = function (req, res) {
     } else {}
 }
 
+exports.posts_by_tag = function (req, res) {
+    console.log(req.params.tag)
+    var query = Post.find({tags: req.params.tag}) 
+    query.sort('-publishDate')
+    query.exec(function(err, docs) {
+        if (err)
+           throw err 
+       console.log(docs)
+       res.render('posts', {posts: docs})
+    }) 
+}
+
 exports.new_post = function (req, res) {
     if (req.method == 'GET') {
         res.render('new_post')
