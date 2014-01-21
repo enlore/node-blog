@@ -8,7 +8,6 @@ var path = require('path')
     , slug = require('slug')
 
 
-
 exports.post = function (req, res) {
     Post.findById(req.params.id, function (err, doc) {
             if (err)
@@ -41,7 +40,7 @@ exports.new_post = function (req, res) {
     } else {
         post = new Post()
         post.title = req.body.title
-        post.body = md(req.body.body)
+        post.body = req.body.body
         post.tags = req.body.tags.split(',')
         // slug or title hyphenated
         post.slug = req.body.slug || slug(req.body.title)
@@ -107,6 +106,13 @@ exports.test = function (req, res) {
 exports.dash = function (req, res) {
     Post.find(function(err, posts) {
         if (err) throw err 
-        res.send({posts: posts})
+        res.render('dash', {posts: posts})
+    })
+}
+
+exports.edit_post = function (req, res) {
+    Post.findById(req.params.id, function (err, post) {
+            if (err) throw err
+            res.render('edit_post', {post: post}) 
     })
 }

@@ -3,6 +3,7 @@ var express     = require('express')
     , http      = require('http')
     , path      = require('path')
     , mongoose  = require('mongoose')
+    , md        = require('node-markdown')
 
 var app = express()
 
@@ -56,6 +57,8 @@ if ('production' == app.get('env')) {
 app.use(require('less-middleware')(less_opts))
 app.use(express.static(path.join(__dirname, 'static')))
 
+app.locals.md = md
+
 // Models
 var Post = require('./models/post')
 
@@ -73,6 +76,7 @@ app.get('/tags/:tag', routes.posts_by_tag)
 app.get('/posts/:id', routes.post)
 
 app.get('/dash', routes.dash)
+app.get('/dash/:id', routes.edit_post)
 
 http.createServer(app).listen(app.get('port'), function() {
   console.log('Express server listening on port ' + app.get('port'))
