@@ -130,5 +130,8 @@ exports.edit_post = function (req, res) {
 }
 
 exports.del_post = function (req, res) {
-    res.send({action: 'delete post'})
+    Post.remove({_id: req.params.id}, function (err) {
+        if (err) throw err 
+        res.redirect('/dash')
+    })
 }
