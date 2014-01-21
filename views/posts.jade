@@ -9,11 +9,14 @@ block body
               a(href="posts/#{post._id}")
                 h1= post.title
 
-              p!= md(post.body)
-
+              p!= md(post.teaser)
+              hr
               p= new Date(post.publishDate)
 
               if post.tags
                 ul
                   -each tag in post.tags
                     li= tag
+
+              hr
+              hr
