@@ -128,3 +128,7 @@ exports.edit_post = function (req, res) {
         })
     }
 }
+
+exports.del_post = function (req, res) {
+    res.send({action: 'delete post'})
+}

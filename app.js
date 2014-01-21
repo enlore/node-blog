@@ -63,21 +63,23 @@ app.locals.md = md
 var Post = require('./models/post')
 
 // Routes
-app.get('/', routes.index)
-app.get('/posts', routes.posts)
 
-app.get('/post/new', routes.new_post)
-app.post('/post/new', routes.new_post)
-app.post('/post/edit', routes.edit_post)
+// Frontend Routes
+app.get('/', routes.posts)
 
 app.get('/tags/:tag', routes.posts_by_tag)
 
 app.get('/posts/:id', routes.post)
 
+// Dashboard Routes
 app.get('/dash', routes.dash)
-
+app.get('/dash/post/new', routes.new_post)
+app.post('/dash/post/new', routes.new_post)
 app.get('/dash/post/:id', routes.edit_post)
 app.post('/dash/post/:id', routes.edit_post)
+
+app.get('/dash/post/:id/delete', routes.del_post)
+
 
 http.createServer(app).listen(app.get('port'), function() {
   console.log('Express server listening on port ' + app.get('port'))
