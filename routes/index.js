@@ -34,6 +34,7 @@ exports.new_post = function (req, res) {
     } else {
         post = new Post()
         post.title = req.body.title
+        post.teaser = req.body.teaser
         post.body = req.body.body
         post.tags = req.body.tags.split(',')
         // slug or title hyphenated
@@ -115,9 +116,10 @@ exports.edit_post = function (req, res) {
     } else {
         edits = {}
         edits.title = req.body.title
+        edits.slug = slug(req.body.slug)
+        edits.teaser = req.body.teaser
         edits.body = req.body.body
         edits.tags = req.body.tags.split(',')
-        edits.slug = slug(req.body.slug)
 
         Post.update({_id: req.params.id}, edits, function (err, num_affected, raw_res) {
             if (err) throw err 
