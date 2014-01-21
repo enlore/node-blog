@@ -1,7 +1,7 @@
 extends layout/dash
 block body
-  .container
-    form.new-post.form-horizontal(action="/dash/post/#{post.id}", method="post")
+  .edit-post.container
+    form.post.form-horizontal(action="/dash/post/#{post.id}", method="post")
       .form-group
         label.col-sm-2.control-label(for="title") Title
         .col-sm-10
