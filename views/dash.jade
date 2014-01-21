@@ -1,0 +1,10 @@
+extends layout/dash
+block body
+  .container
+    -if (posts)
+      ul.posts
+        -each post in posts
+          li
+            a(href="/dash/post/#{post.id}")
+              h1= post.title
+  
