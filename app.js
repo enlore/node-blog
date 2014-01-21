@@ -72,6 +72,8 @@ app.get('/tags/:tag', routes.posts_by_tag)
 
 app.get('/posts/:id', routes.post)
 
+app.get('/dash', routes.dash)
+
 http.createServer(app).listen(app.get('port'), function() {
   console.log('Express server listening on port ' + app.get('port'))
 })

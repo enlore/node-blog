@@ -103,3 +103,10 @@ exports.test = function (req, res) {
     res.writeHead(303)
     res.end()
 }
+
+exports.dash = function (req, res) {
+    Post.find(function(err, posts) {
+        if (err) throw err 
+        res.send({posts: posts})
+    })
+}
