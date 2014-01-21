@@ -98,7 +98,9 @@ exports.test = function (req, res) {
 }
 
 exports.dash = function (req, res) {
-    Post.find(function(err, posts) {
+    query = Post.find()
+    query.sort('-publishDate')
+    query.exec(function(err, posts) {
         if (err) throw err 
         res.render('dash', {posts: posts})
     })
