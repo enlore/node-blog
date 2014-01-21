@@ -3,7 +3,7 @@ var express     = require('express')
     , http      = require('http')
     , path      = require('path')
     , mongoose  = require('mongoose')
-    , md        = require('node-markdown')
+    , md        = require('node-markdown').Markdown
 
 var app = express()
 
@@ -68,7 +68,6 @@ app.get('/posts', routes.posts)
 
 app.get('/post/new', routes.new_post)
 app.post('/post/new', routes.new_post)
-app.get('/post/edit', routes.edit_post)
 app.post('/post/edit', routes.edit_post)
 
 app.get('/tags/:tag', routes.posts_by_tag)
@@ -76,7 +75,9 @@ app.get('/tags/:tag', routes.posts_by_tag)
 app.get('/posts/:id', routes.post)
 
 app.get('/dash', routes.dash)
-app.get('/dash/:id', routes.edit_post)
+
+app.get('/dash/post/:id', routes.edit_post)
+app.post('/dash/post/:id', routes.edit_post)
 
 http.createServer(app).listen(app.get('port'), function() {
   console.log('Express server listening on port ' + app.get('port'))

@@ -1,7 +1,7 @@
 extends layout/dash
 block body
   .container
-    form.new-post.form-horizontal(action="/dash/post/save", method="post")
+    form.new-post.form-horizontal(action="/dash/post/#{post.id}", method="post")
       .form-group
         label.col-sm-2.control-label(for="title") Title
         .col-sm-10
@@ -19,7 +19,7 @@ block body
         .col-sm-10
           p.hint Write in Markdown, fool.
           textarea.form-control(type="text", name="body", value="")
-            #{post.body}
+            = post.body
 
       .form-group
         label.col-sm-2.control-label(for="tags") Tags

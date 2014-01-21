@@ -16,12 +16,6 @@ exports.post = function (req, res) {
     })
 }
 
-exports.edit_post = function (req, res) {
-    if (req.method == 'GET')  {
-        res.render('edit_post', {post: post}) 
-    } else {}
-}
-
 exports.posts_by_tag = function (req, res) {
     console.log(req.params.tag)
     var query = Post.find({tags: req.params.tag}) 
@@ -111,8 +105,22 @@ exports.dash = function (req, res) {
 }
 
 exports.edit_post = function (req, res) {
-    Post.findById(req.params.id, function (err, post) {
-            if (err) throw err
-            res.render('edit_post', {post: post}) 
-    })
+    if (req.method == 'GET') {
+        Post.findById(req.params.id, function (err, post) {
+                if (err) throw err
+                res.render('edit_post', {post: post}) 
+        })
+    } else {
+        edits = {}
+        edits.title = req.body.title
+        edits.body = req.body.body
+        edits.tags = req.body.tags.split(',')
+        edits.slug = slug(req.body.slug)
+
+        Post.update({_id: req.params.id}, edits, function (err, num_affected, raw_res) {
+            if (err) throw err 
+            console.log(raw_res)
+            res.redirect('/dash')
+        })
+    }
 }
