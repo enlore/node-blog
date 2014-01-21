@@ -15,6 +15,12 @@ block body
           input.form-control(type="text", name="slug", value="#{post.slug}")
 
       .form-group
+        label.col-sm-2.control-label(for="teaser") Teaser
+        .col-sm-10
+          p.hint Teaser content for main page 
+          input.form-control(type="text", name="teaser", value="#{post.teaser}")
+
+      .form-group
         label.col-sm-2.control-label(for="body") Body
         .col-sm-10
           p.hint Write in Markdown, fool.
