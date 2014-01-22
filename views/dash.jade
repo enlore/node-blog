@@ -9,7 +9,7 @@ block body
               a(href="/dash/post/#{post.id}")
                 p= post.title
             .col-sm-4
-              p= post.publishDate
+              p= pretty_date(post.publishDate)
               a(href="/dash/post/#{post.id}/delete")
                 p delete post
 

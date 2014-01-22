@@ -4,6 +4,7 @@ var express     = require('express')
     , path      = require('path')
     , mongoose  = require('mongoose')
     , md        = require('node-markdown').Markdown
+    , locals    = require('./locals')
 
 var app = express()
 
@@ -58,7 +59,7 @@ app.use(require('less-middleware')(less_opts))
 app.use(express.static(path.join(__dirname, 'static')))
 
 app.locals.md = md
-
+app.locals.pretty_date = locals.pretty_date
 // Models
 var Post = require('./models/post')
 
@@ -66,9 +67,7 @@ var Post = require('./models/post')
 
 // Frontend Routes
 app.get('/', routes.posts)
-
 app.get('/tags/:tag', routes.posts_by_tag)
-
 app.get('/posts/:id', routes.post)
 
 // Dashboard Routes
