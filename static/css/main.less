@@ -1,10 +1,14 @@
 /* lol hai
  **********/
+@light-blue: #C2FAFF;
 html, body { height: 100%; }
-@media screen and (min-width: 768px) {
-    .wrapper {
-        margin-left: 10em;
-        width: 60em;
+
+.posts {
+    .post {
+        padding: 1em; 
+    }
+    .post:nth-child(2n) {
+        background: @light-blue; 
     }
 }
 

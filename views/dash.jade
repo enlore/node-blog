@@ -2,12 +2,15 @@ extends layout/dash
 block body
   .container
     -if (posts)
-      ul.posts
+      .posts
         -each post in posts
-          li
-            a(href="/dash/post/#{post.id}")
-              p= post.title
-            a(href="/dash/post/#{post.id}/delete")
-              p delete post
+          .row.post
+            .col-sm-8
+              a(href="/dash/post/#{post.id}")
+                p= post.title
+            .col-sm-4
+              p= post.publishDate
+              a(href="/dash/post/#{post.id}/delete")
+                p delete post
 
   
