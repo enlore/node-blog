@@ -12,6 +12,13 @@ exports.login = function (req, res) {
     res.render('login')
 }
 
+exports.post_by_slug = function (req, res) {
+    Post.find({slug: req.params.slug}, function (err, post) {
+        if (err) throw err 
+        res.render('post', {post: post})
+    })
+}
+
 exports.post = function (req, res) {
     Post.findById(req.params.id, function (err, doc) {
             if (err)
@@ -46,7 +53,7 @@ exports.new_post = function (req, res) {
         post.publishDate = new Date()
         post.save(function (err) {
             if (err) throw err 
-            res.redirect('posts')
+            res.redirect('dash/posts')
         })
     }
 }

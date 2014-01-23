@@ -82,6 +82,7 @@ function loginRequired(req, res, next) {
 // Frontend Routes
 app.get('/', routes.posts)
 app.get('/tags/:tag', routes.posts_by_tag)
+app.get('/posts/:slug', routes.post_by_slug)
 app.get('/posts/:id', routes.post)
 
 // Dashboard Routes
