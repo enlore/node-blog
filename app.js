@@ -71,6 +71,12 @@ app.use(express.static(path.join(__dirname, 'static')))
 app.locals.md = md
 app.locals.pretty_date = locals.pretty_date
 
+// Login middleware
+function loginRequired(req, res, next) {
+    if (!req.user)
+        res.send(401, { message: 'Nope' })
+    return next()
+}
 // Routes
 
 // Frontend Routes
@@ -79,7 +85,7 @@ app.get('/tags/:tag', routes.posts_by_tag)
 app.get('/posts/:id', routes.post)
 
 // Dashboard Routes
-app.get('/dash', routes.dash)
+app.get('/dash', loginRequired, routes.dash)
 app.get('/dash/post/new', routes.new_post)
 app.post('/dash/post/new', routes.new_post)
 app.get('/dash/post/:id', routes.edit_post)
