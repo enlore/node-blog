@@ -86,14 +86,15 @@ app.get('/posts/:id', routes.post)
 
 // Dashboard Routes
 app.get('/dash', loginRequired, routes.dash)
-app.get('/dash/post/new', routes.new_post)
-app.post('/dash/post/new', routes.new_post)
-app.get('/dash/post/:id', routes.edit_post)
-app.post('/dash/post/:id', routes.edit_post)
+app.get('/dash/post/new', loginRequired, routes.new_post)
+app.post('/dash/post/new', loginRequired, routes.new_post)
+app.get('/dash/post/:id', loginRequired, routes.edit_post)
+app.post('/dash/post/:id', loginRequired, routes.edit_post)
 
-app.get('/dash/post/:id/delete', routes.del_post)
+app.get('/dash/post/:id/delete', loginRequired, routes.del_post)
 
-app.get('/logout', function(req, res) { req.logout(); res.redirect('/') })
+// Auth routes
+app.get('/logout', loginRequired, function(req, res) { req.logout(); res.redirect('/') })
 app.get('/login', routes.login)
 app.post('/login', passport.authenticate('local', {
             successRedirect: '/dash',
