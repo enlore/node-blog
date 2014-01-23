@@ -45,7 +45,10 @@ body
 
       ul.nav.navbar-nav.navbar-right
         li
-          a(href="/login") Login
+          -if (user)
+            a(href="/dash") Dash
+          -else
+            a(href="/login") Login
 
   block body
 
