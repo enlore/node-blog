@@ -30,6 +30,11 @@ app.use(express.session())
 app.use(flash())
 app.use(passport.initialize())
 app.use(passport.session())
+
+app.use(function (req, res, next) {
+    res.locals.user = req.user || false
+    next()
+})
 app.use(app.router)
 
 var less_opts = {
