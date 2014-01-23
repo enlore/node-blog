@@ -6,7 +6,7 @@ block body
         -each post in posts
           .row
             .col-sm-8
-              a(href="posts/#{post._id}")
+              a(href="posts/#{post.slug}")
                 h1= post.title
 
               p!= md(post.teaser)
