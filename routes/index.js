@@ -13,8 +13,9 @@ exports.login = function (req, res) {
 }
 
 exports.post_by_slug = function (req, res) {
-    Post.find({slug: req.params.slug}, function (err, post) {
+    Post.findOne({slug: req.params.slug}, function (err, post) {
         if (err) throw err 
+        console.log(post)
         res.render('post', {post: post})
     })
 }
