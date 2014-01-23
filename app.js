@@ -65,8 +65,6 @@ app.use(express.static(path.join(__dirname, 'static')))
 
 app.locals.md = md
 app.locals.pretty_date = locals.pretty_date
-// Models
-var Post = require('./models/post')
 
 // Routes
 
