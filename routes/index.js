@@ -8,6 +8,10 @@ var path = require('path')
     , slug = require('slug')
 
 
+exports.login = function (req, res) {
+    res.render('login')
+}
+
 exports.post = function (req, res) {
     Post.findById(req.params.id, function (err, doc) {
             if (err)

@@ -39,13 +39,17 @@ body
 
   nav.nav.navbar-default
     .container
-      ul.nav.navbar-nav
+      ul.nav.navbar-nav.navbar-left
         li
           a(href="/") View Blog
         li
           a(href="/dash") All Thuh Posts
         li
           a(href='/dash/post/new') New
+
+      ul.nav.navbar-nav.navbar-right
+        li
+          a(href="/logout") Logout
 
   block body
 

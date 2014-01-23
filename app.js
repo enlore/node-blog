@@ -5,6 +5,8 @@ var express     = require('express')
     , mongoose  = require('mongoose')
     , md        = require('node-markdown').Markdown
     , locals    = require('./locals')
+    , passport  = require('./passport')
+    , flash     = require('connect-flash')
 
 var app = express()
 
@@ -25,12 +27,15 @@ app.use(express.methodOverride())
 app.use(express.cookieParser(app.get('secret')))
 app.use(express.bodyParser())
 app.use(express.session())
+app.use(flash())
+app.use(passport.initialize())
+app.use(passport.session())
 app.use(app.router)
 
 var less_opts = {
    src              : path.join(__dirname, 'static'),
    compress         : false,
-   debug            : true,
+   debug            : false,//true,
    paths            : [path.join(__dirname, 'static')],
    once             : false,
    dest             : path.join(__dirname, 'static'),
@@ -78,6 +83,14 @@ app.get('/dash/post/:id', routes.edit_post)
 app.post('/dash/post/:id', routes.edit_post)
 
 app.get('/dash/post/:id/delete', routes.del_post)
+
+app.get('/logout', function(req, res) { req.logout(); res.redirect('/') })
+app.get('/login', routes.login)
+app.post('/login', passport.authenticate('local', {
+            successRedirect: '/dash',
+            failureRedirect: '/login',
+            failureFlash: true
+}))
 
 
 http.createServer(app).listen(app.get('port'), function() {
