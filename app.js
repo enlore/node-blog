@@ -68,15 +68,23 @@ if ('production' == app.get('env')) {
 app.use(require('less-middleware')(less_opts))
 app.use(express.static(path.join(__dirname, 'static')))
 
+// Template locals
 app.locals.md = md
 app.locals.pretty_date = locals.pretty_date
 
 // Login middleware
 function loginRequired(req, res, next) {
     if (!req.user)
-        res.send(401, { message: 'Nope' })
+        console.log('~~~~~> login required for %s', req.path)
+        req.flash('info', 'Hey you dumb guy you gotta log in first!')
+        res.redirect('/login')
     return next()
 }
+
+app.use(function (res, req, next) {
+    res.locals.messages = req.flash('info')
+})
+
 // Routes
 
 // Frontend Routes
