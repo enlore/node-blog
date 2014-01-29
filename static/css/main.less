@@ -1,7 +1,22 @@
 /* lol hai
  **********/
 @light-blue: #C2FAFF;
+@light-green: #8CFD87; 
+@light-red: #FF5D5D;
 html, body { height: 100%; }
+
+.flashes .flash {
+    &.info {
+        background: @light-green;
+        border: 2px solid darken(@light-green, 20%);
+        padding: 1em;
+    }
+    &.error {
+        background: @light-red;
+        border: 2px solid darken(@light-red, 20%);
+        padding: 1em;
+    }
+}
 
 .index.container {
     .tags {
