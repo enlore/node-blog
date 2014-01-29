@@ -50,6 +50,15 @@ body
           -else
             a(href="/login") Login
 
+  -if (flashes)
+    .container
+      .row
+        .col-sm-8.col-sm-offset-2
+          .flashes
+            -each message, key in flashes
+              .flash(class="#{key}")= message
+
+
   block body
 
   script(src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js")

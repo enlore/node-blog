@@ -85,15 +85,14 @@ function loginRequired(req, res, next) {
 
 // Flash template local setter middleware
 app.use(function (req, res, next) {
-    res.locals.messages = req.flash()
+    res.locals.flashes = req.flash()
     next()
 })
 
+// So, this has to be the last use statement, apparently
 app.use(app.router)
 
 // Routes
-app.get('/flash', routes.flash_me)
-
 // Frontend Routes
 app.get('/', routes.posts)
 app.get('/tags/:tag', routes.posts_by_tag)

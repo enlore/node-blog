@@ -7,7 +7,6 @@ var path = require('path')
     , Post = require('../models/post')
     , slug = require('slug')
 
-
 exports.login = function (req, res) {
     res.render('login')
 }
@@ -65,7 +64,6 @@ exports.posts = function (req, res) {
     query.sort('-publishDate')
     query.exec(function (err, docs) {
         if (err) throw err
-        console.log(typeof(docs[0])) 
         res.render('posts', { posts: docs }) 
     })
 }
