@@ -74,10 +74,11 @@ app.locals.pretty_date = locals.pretty_date
 
 // Login middleware
 function loginRequired(req, res, next) {
-    if (!req.user)
+    if (!req.user) {
         console.log('~~~~~> login required for %s', req.path)
         req.flash('info', 'Hey you dumb guy you gotta log in first!')
         res.redirect('/login')
+    }
     return next()
 }
 
