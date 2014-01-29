@@ -31,11 +31,6 @@ app.use(flash())
 app.use(passport.initialize())
 app.use(passport.session())
 
-app.use(function (req, res, next) {
-    res.locals.user = req.user || false
-    next()
-})
-app.use(app.router)
 
 var less_opts = {
    src              : path.join(__dirname, 'static'),
@@ -72,6 +67,12 @@ app.use(express.static(path.join(__dirname, 'static')))
 app.locals.md = md
 app.locals.pretty_date = locals.pretty_date
 
+// User template setter
+app.use(function (req, res, next) {
+    res.locals.user = req.user || false
+    next()
+})
+
 // Login middleware
 function loginRequired(req, res, next) {
     if (!req.user) {
@@ -79,14 +80,19 @@ function loginRequired(req, res, next) {
         req.flash('info', 'Hey you dumb guy you gotta log in first!')
         res.redirect('/login')
     }
-    return next()
+    next()
 }
 
-app.use(function (res, req, next) {
-    res.locals.messages = req.flash('info')
+// Flash template local setter middleware
+app.use(function (req, res, next) {
+    res.locals.messages = req.flash()
+    next()
 })
 
+app.use(app.router)
+
 // Routes
+app.get('/flash', routes.flash_me)
 
 // Frontend Routes
 app.get('/', routes.posts)
@@ -111,7 +117,6 @@ app.post('/login', passport.authenticate('local', {
             failureRedirect: '/login',
             failureFlash: true
 }))
-
 
 http.createServer(app).listen(app.get('port'), function() {
   console.log('Express server listening on port ' + app.get('port'))
