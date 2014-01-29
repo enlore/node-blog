@@ -3,18 +3,24 @@
 @light-blue: #C2FAFF;
 @light-green: #8CFD87; 
 @light-red: #FF5D5D;
+
+@import 'forms.less';
+
 html, body { height: 100%; }
 
-.flashes .flash {
-    &.info {
-        background: @light-green;
-        border: 2px solid darken(@light-green, 20%);
-        padding: 1em;
-    }
-    &.error {
-        background: @light-red;
-        border: 2px solid darken(@light-red, 20%);
-        padding: 1em;
+.flashes {
+    padding-top: 1em;
+    .flash {
+        &.info {
+            background: @light-green;
+            border: 2px solid darken(@light-green, 20%);
+            padding: 0.6em;
+        }
+        &.error {
+            background: @light-red;
+            border: 2px solid darken(@light-red, 20%);
+            padding: 0.6em;
+        }
     }
 }
 
