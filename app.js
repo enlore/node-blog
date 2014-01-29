@@ -77,7 +77,7 @@ app.use(function (req, res, next) {
 function loginRequired(req, res, next) {
     if (!req.user) {
         console.log('~~~~~> login required for %s', req.path)
-        req.flash('info', 'Hey you dumb guy you gotta log in first!')
+        req.flash('error', 'Hey you dumb guy you gotta log in first!')
         res.redirect('/login')
     }
     next()
