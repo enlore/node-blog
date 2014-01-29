@@ -2,7 +2,7 @@ extends layout/base
 block body
   .container
     .row
-      form.col-sm-8.col-sm-offset-2.form(action="/login", method="post")
+      form.login-form.col-sm-8.col-sm-offset-2.form(action="/login", method="post")
         .form-group
           label.control-label(for="username") U
           input.form-control(type="text", name="username")
