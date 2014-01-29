@@ -11,12 +11,13 @@ block body
 
               p!= md(post.teaser)
               hr
-              p= new Date(post.publishDate)
+              p= pretty_date(post.publishDate)
 
               if post.tags
                 ul
                   -each tag in post.tags
-                    li= tag
+                    li
+                      a(href="/tags/#{tag}")= tag
 
               hr
               hr
