@@ -3,7 +3,28 @@
 @light-blue: #C2FAFF;
 html, body { height: 100%; }
 
-.posts {
+.index.container {
+    .tags {
+        list-style: none;
+        li {
+            display: inline-block; 
+            margin-right: 10px;
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .index.container {
+        .posts {
+        }
+        .fixed.sidebar {
+            position: fixed; 
+            text-align: right;
+        }
+    }
+}
+
+.dash.posts {
     .post {
         padding: 1em; 
     }
@@ -26,14 +47,3 @@ html, body { height: 100%; }
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-

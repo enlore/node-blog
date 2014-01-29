@@ -1,23 +1,28 @@
 extends layout/base
 block body
-  .container
+  .container.index
     .row
-      .col-sm-12
-        -each post in posts
-          .row
-            .col-sm-8
-              a(href="posts/#{post.slug}")
-                h1= post.title
+      .col-sm-4.col-sm-push-8.fixed.sidebar
+        h1 HOO HOO
+        p.lead Hallo, summer blowout sale!
 
-              p!= md(post.teaser)
+      .col-sm-8.col-sm-pull-4-posts
+        -each post in posts
+          .row.post
+            .col-sm-12
+              a(href="posts/#{post.slug}")
+                h1.title= post.title
+              p.date= pretty_date(post.publishDate)
+
+              p.teaser!= md(post.teaser)
               hr
-              p= pretty_date(post.publishDate)
 
               if post.tags
-                ul
+                ul.tags
                   -each tag in post.tags
                     li
                       a(href="/tags/#{tag}")= tag
 
               hr
-              hr
+
+
