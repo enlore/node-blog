@@ -1,9 +1,16 @@
-# NGINX
+---
+{
+    title:  Configuring nginx,
+    slug: configuring-nginx,
+    publishDate: 2014-01-13
+}
+----
+
 ## Like buttaahh
+ITT, we configure nginx to do stuff.
 
-ITT, we configure nginx.
-
-Consider `/etc/nginx/nginx.conf`.
+Consider `/etc/nginx/nginx.conf`. (_Note_: This path is specific to Ubuntu.
+Consult the docs for your os to find where you nginx config is haning out.)
 
 ### It Has variables.
 
