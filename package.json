@@ -1,6 +1,6 @@
 {
-  "name": "application-name",
-  "version": "0.0.1",
+  "name": "node-blog",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "start": "node app.js"
@@ -9,11 +9,22 @@
     "express": "3.4.6",
     "jade": "*",
     "less-middleware": "*",
-    "cozy-slug": "~0.1.2",
-    "slug": "~0.4.0"
+    "slug": "~0.4.0",
+    "node-markdown": "~0.1.1",
+    "connect-flash": "~0.1.1",
+    "mongoose": "~3.8.6"
   },
   "main": "app.js",
   "devDependencies": {},
-  "author": "",
-  "license": "BSD-2-Clause"
+  "author": "enlore (n.e.lorenson@gmail.com)",
+  "license": "BSD-2-Clause",
+  "description": "A Friendly Little Blog App ==========================",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/enlore/node-blog.git"
+  },
+  "bugs": {
+    "url": "https://github.com/enlore/node-blog/issues"
+  },
+  "homepage": "https://github.com/enlore/node-blog"
 }
