@@ -10,7 +10,6 @@ var express     = require('express')
     , helpers   = require('./helpers')
     , fs        = require('fs')
 
- 
 var app = express()
 var config = helpers.getConfig('config.json')
 
@@ -69,7 +68,6 @@ if ('production' == app.get('env')) {
       , mongoose_port = config.mongo_port || 27017
       , mongo_db_name = config.mongo_db_name || 'posts'
 
-    
     mongoose.connect('mongodb://' + mongoose_user + ':' + mongoose_pass + '@' + mongoose_host + '/'  + mongo_db_name)
 }
 

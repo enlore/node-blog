@@ -19,7 +19,8 @@ exports.getConfig = function (path) {
                 "mongo_user": "",
                 "mongo_pwd": "",
                 "mongo_host": "",
-                "mongo_port": ""
+                "mongo_port": "",
+                "mongo_db_name": ""
             }
 
             fs.writeFileSync('config.json', JSON.stringify(config), {encoding: 'utf8'})
