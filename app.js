@@ -67,9 +67,10 @@ if ('production' == app.get('env')) {
       , mongoose_pass = config.mongo_pass || ''
       , mongoose_host = config.mongo_host || 'localhost'
       , mongoose_port = config.mongo_port || 27017
+      , mongo_db_name = config.mongo_db_name || 'posts'
 
     
-    mongoose.connect('mongodb://' + mongoose_user + ':' + mongoose_pass + '@' + mongoose_host + '/'  + 'posts')
+    mongoose.connect('mongodb://' + mongoose_user + ':' + mongoose_pass + '@' + mongoose_host + '/'  + mongo_db_name)
 }
 
 app.use(require('less-middleware')(less_opts))
