@@ -7,14 +7,18 @@ var express     = require('express')
     , locals    = require('./locals')
     , passport  = require('./passport')
     , flash     = require('connect-flash')
+    , helpers   = require('./helpers')
+    , fs        = require('fs')
 
+ 
 var app = express()
+var config = helpers.getConfig('config.json')
 
 app.set('post dir', path.join(__dirname, 'posts'))
 
-app.set('port', process.env.PORT || 3000)
-app.set('env', process.env.NODE_ENV || 'development')
-app.set('secret', process.env.SECRET || 'WHAT IS A MAN')
+app.set('port', config.app_port || 3000)
+app.set('env', config.app_env || 'development')
+app.set('secret', config.app_secret || 'WHAT IS A MAN')
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'jade')
 
@@ -58,6 +62,14 @@ if ('production' == app.get('env')) {
     less_opts.once              = true
     less_opts.dumpLineNumbers   = 0
     less_opts.sourcemap         = false
+
+    var mongoose_user = config.mongo_user || ''
+      , mongoose_pass = config.mongo_pass || ''
+      , mongoose_host = config.mongo_host || 'localhost'
+      , mongoose_port = config.mongo_port || 27017
+
+    
+    mongoose.connect('mongodb://' + mongoose_user + ':' + mongoose_pass + '@' + mongoose_host + '/'  + 'posts')
 }
 
 app.use(require('less-middleware')(less_opts))
