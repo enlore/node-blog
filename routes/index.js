@@ -53,7 +53,7 @@ exports.new_post = function (req, res) {
         post.publishDate = new Date()
         post.save(function (err) {
             if (err) throw err 
-            res.redirect('dash/posts')
+            res.redirect('/dash')
         })
     }
 }
