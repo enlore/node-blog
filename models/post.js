@@ -6,6 +6,7 @@ var postSchema = new mongoose.Schema({
         teaser: String,
         body: String,
         publishDate: Date,
+        publishOn: Date,
         slug: String,
         tags: Array
 })

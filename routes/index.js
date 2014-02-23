@@ -44,6 +44,7 @@ exports.new_post = function (req, res) {
         res.render('new_post')
     } else {
         post = new Post()
+        post.publishOn = new Date(req.body.publishOn)
         post.title = req.body.title
         post.teaser = req.body.teaser
         post.body = req.body.body
@@ -125,6 +126,7 @@ exports.edit_post = function (req, res) {
         })
     } else {
         edits = {}
+        edits.publishOn = new Date(req.body.publishOn)
         edits.title = req.body.title
         edits.slug = slug(req.body.slug)
         edits.teaser = req.body.teaser
