@@ -2,8 +2,11 @@ exports.ellipsize = function (text) {
     return text.slice(0, 300)
 }
 
+exports.getISODate = function (date) {
+    return date.toISOString().split('T')[0]
+}
+
 exports.pretty_date = function (date_string) {
-    
     var date = new Date(date_string)
       , days =  ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
       , months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',

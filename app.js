@@ -75,8 +75,9 @@ app.use(require('less-middleware')(less_opts))
 app.use(express.static(path.join(__dirname, 'static')))
 
 // Template locals
-app.locals.md = md
-app.locals.pretty_date = locals.pretty_date
+app.locals.md           = md
+app.locals.pretty_date  = locals.pretty_date
+app.locals.getISODate   = locals.getISODate
 
 // User template setter
 app.use(function (req, res, next) {
