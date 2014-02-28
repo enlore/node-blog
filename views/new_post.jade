@@ -3,9 +3,14 @@ block body
   .new-post.container
     form.post.form-horizontal(action="/dash/post/new", method="post")
       .form-group
+        label.col-sm-2.control-label(for="publishOn") Save For Later?
+        .col-sm-10
+          input.form-control(type="checkbox", name="deffered")
+
+      .form-group
         label.col-sm-2.control-label(for="publishOn") Publish On
         .col-sm-10
-          input.form-control(type="date", name="publishOn")
+          input.form-control.pubOn-datepicker(type="text", name="publishOn")
 
       .form-group
         label.col-sm-2.control-label(for="title") Title

@@ -3,9 +3,17 @@ block body
   .edit-post.container
     form.post.form-horizontal(action="/dash/post/#{post.id}", method="post")
       .form-group
+        label.col-sm-2.control-label(for="publishOn") Save For Later?
+        .col-sm-10
+          -if (post.deffered)
+            input.form-control(type="checkbox" name="deffered", checked)
+          -else
+            input.form-control(type="checkbox" name="deffered")
+
+      .form-group
         label.col-sm-2.control-label(for="publishOn") Publish On
         .col-sm-10
-          input.form-control(type="date", name="publishOn", value="#{post.publishOn.toISOString().split('T')[0]}")
+          input.form-control(type="date", name="publishOn", value="#{getISODate(post.publishOn)}")
 
       .form-group
         label.col-sm-2.control-label(for="title") Title

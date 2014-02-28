@@ -43,15 +43,25 @@ exports.new_post = function (req, res) {
     if (req.method == 'GET') {
         res.render('new_post')
     } else {
+
+        var date_string = req.body.publishOn + 'T00:00:00-06:00'
+        console.log(date_string)
+
         post = new Post()
         post.publishOn = new Date(req.body.publishOn)
+
+        if (req.body.deffered === 'on')
+            post.deffered = true
+
         post.title = req.body.title
         post.teaser = req.body.teaser
+        post.byLine = req.user.byLine
         post.body = req.body.body
         post.tags = req.body.tags.split(',')
         // slug or title hyphenated
         post.slug = req.body.slug || slug(req.body.title)
         post.publishDate = new Date()
+        post.author = req.user.username
         post.save(function (err) {
             if (err) throw err 
             res.redirect('/dash')
@@ -61,7 +71,8 @@ exports.new_post = function (req, res) {
 
 exports.posts = function (req, res) {
     //res.render('posts', {posts: [{title: 'Test Donkey', body: 'This is the test donkey', tags: ['test', 'donkey'] }]})
-    query = Post.find()
+    // find all posts where date is equal to or less than today
+    query = Post.find({publishOn: {$lte: new Date}, deffered: false})
     query.sort('-publishDate')
     query.exec(function (err, docs) {
         if (err) throw err
@@ -126,6 +137,14 @@ exports.edit_post = function (req, res) {
         })
     } else {
         edits = {}
+
+        if (req.body.deffered === 'on')
+            edits.deffered = true
+        else
+            edits.deffered = false
+
+        console.log(edits.deffered)
+
         edits.publishOn = new Date(req.body.publishOn)
         edits.title = req.body.title
         edits.slug = slug(req.body.slug)

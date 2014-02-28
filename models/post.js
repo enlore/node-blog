@@ -8,7 +8,9 @@ var postSchema = new mongoose.Schema({
         publishDate: Date,
         publishOn: Date,
         slug: String,
-        tags: Array
+        tags: Array,
+        byLine: String,
+        deffered: Boolean
 })
 
 module.exports = mongoose.model('Post', postSchema)
