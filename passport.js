@@ -1,32 +1,30 @@
 var passport        = require('passport')
   , LocalStrategy   = require('passport-local').Strategy
+  , userProvider    = require('./userProvider')
 
 passport.use(new LocalStrategy(
     function(username, password, done) {
         console.log('~~~~~> authing')
         console.log('u: %s\np: %s', username, password)
 
-        if (username !== 'enlore') {
-            console.log('~~~~~> bad username')
+        var user = userProvider.getUser(username)
+
+        if (typeof user === 'undefined')
             return done(null, false, {message: 'Nobody here by that name'})
-        }
 
-        if (password !== 'butts') {
-            console.log('~~~~~> bad pass')
+        if (password !== user.password)
             return done(null, false, {message: 'That is not what we agreed on'})
-        }
 
-        console.log('~~~~~> logged in!')
-        return done(null, {username: 'enlore', id: 1})  
+        return done(null, user)  
     } 
 ))
 
 passport.serializeUser(function(user, done) {
-    done(null, user.id)
+    done(null, user.username)
 })
 
-passport.deserializeUser(function(id, done) {
-    done(null, {username: 'enlore', id: id}) 
+passport.deserializeUser(function(username, done) {
+    done(null, userProvider.getUser(username)) 
 })
 
 module.exports = passport
