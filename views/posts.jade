@@ -12,8 +12,8 @@ block body
             .col-sm-12
               a(href="posts/#{post.slug}")
                 h1.title= post.title
-              p.date= pretty_date(post.publishDate)
-
+              p.date= pretty_date(post.publishOn)
+              p.byline= post.byLine
               p.teaser!= md(post.teaser)
               hr
 
@@ -22,7 +22,4 @@ block body
                   -each tag in post.tags
                     li
                       a(href="/tags/#{tag}")= tag
-
               hr
-
-
